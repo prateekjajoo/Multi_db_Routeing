@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<h1>User List</h1>
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last name</th>
+        <th>User Name</th>
+        <th>DB Assign</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for user in userrole_list %}
+        <tr>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.db_assign}}</td>
+            <td><a href="{% url 'user_update' user.id %}"><i class="fa fa-pencil-square-o" style=" color: #3c8dbc; font-size: 20px;"></i></a></td>
+            <td><a href="{% url 'user_delete' user.id %}" onclick="return confirm('Do you really want to Delete ?');">                    <i class="fa fa-trash-o" aria-hidden="true" style="color: black;font-size: 20px;"></i>
+</a></td>
+
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

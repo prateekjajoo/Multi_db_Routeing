@@ -1,0 +1,56 @@
+{% extends "app/base.html" %}
+
+
+{% block content %}
+
+        <h2> Insert Product Details </h2>
+        <form role="form" method="post" action="{% url 'product_create' %}" enctype="multipart/form-data">
+            <div class="box-body">
+                    <div {% if object.id %} hidden {% endif %} >
+                            <label>User:</label>
+                            <select name="db_name" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton">
+                                <option selected="selected">---------</option>
+                                {% for db in db_list %}
+                                <option class="dropdown-item" value="{{db}}">{{db}}</option>
+                                {% endfor %}
+                            </select>
+                    </div>
+                    {% csrf_token %} {{form.as_p}}
+
+            </div>
+            <div class="box-footer">
+                <input type="submit" class="btn btn-primary"  {% if object.id %}  value="Update" formaction="{% url 'product_update' pk=object.id string=object.db %}" {%endif%}>
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </div>
+        </form>
+
+        {% for key, product_list in final_list.items %}
+
+        <h3>{{key}}</h3>
+        <br>
+        <table border="1">
+            <tr>
+                <th>User</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Prize</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for pro in product_list %}
+            <tr>
+                <td>{{pro.user}}</td>
+                <td>{{pro.name}}</td>
+                <td>{{pro.description}}</td>
+                <td>{{pro.prize}}</td>
+                <td><a href="{% url 'product_update' pro.id key %}"><i class="fa fa-pencil-square-o" style=" color: #3c8dbc; font-size: 20px;"> </a></td>
+                <td><a href="{% url 'product_delete' pro.id key %}" onclick="return confirm('Do you really want to Delete ?');">
+                    <i class="fa fa-trash-o" aria-hidden="true" style="color: black;font-size: 20px;"></i>
+</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% endfor %}
+
+{% endblock %}

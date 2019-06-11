@@ -1,0 +1,23 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<a href="{% url 'user_list' %}">List Of User</a>
+<a href="{% url 'pro_list' %}">List Of Product</a>
+
+<h2>User Create Form</h2>
+
+
+
+<form role="form" method="post" action="{% url 'user_create' %}" enctype="multipart/form-data">
+        <div class="box-body">
+            <table>
+                {% csrf_token %} {{form.as_p}}
+            </table>
+        </div>
+        <div class="box-footer">
+            <input type="submit"  class="btn btn-primary" {% if object.id %}  value="Update" formaction="{% url 'user_update' object.id %}" {%endif%} >
+            <button type="reset" class="btn btn-primary">Reset</button>
+        </div>
+</form>
+{% endblock %}

@@ -1,0 +1,62 @@
+     form {
+    width: 500px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+}
+.box-body {
+
+    border-radius: 5px;
+    text-align: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.h3, h3 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+    color: #000;
+    width: 500px;
+    margin: 20px auto 0px;
+    text-align: left;
+}
+table {
+    width: 500px;
+    border-radius: 5px;
+}
+table td, table th {
+    padding: 8px 12px;
+}
+table tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+table th {
+    background-color: #ccc;
+    color: #000;
+}
+select#dropdownMenuButton {
+    width: calc(100% - 105px);
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+}
+
+.box-body label {
+    width: 100px;
+}
+.box-body input[type="text"] {
+    width: calc(100% - 100px);
+    float: right;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    height: 28px;
+}
+
+ul{
+    padding: 0;
+    list-style: none;
+}
+
+.helptext 
+{
+    background:red;
+}

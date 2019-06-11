@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Multi DB Router</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href='{% static "main.css" %}'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>
+
+
+
+    </style>
+
+
+</head>
+
+<body>
+   <center>
+
+
+       <a href="{% url 'logout' %}"> <i class="fa fa-power-off" style="float: right;font-size: 30px; margin: 2px 29px 5px 5px;" aria-hidden="true"></i></a>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="alert alert-{{ message.tags }} fade in alert-dismissible"{% endif %} style="    width: 500px;
+    margin-top: 13px;">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %} {% endblock %}
+
+   </center>
+
+
+</body>
+
+</html>

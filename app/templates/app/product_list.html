@@ -1,0 +1,34 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+    <h1> Product List</h1>
+ {% for key, product_list in final_list.items %}
+
+        <h3>{{key}}</h3>
+        <br>
+        <table border="1">
+            <tr>
+                <th>User</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Prize</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for pro in product_list %}
+            <tr>
+                <td>{{pro.user}}</td>
+                <td>{{pro.name}}</td>
+                <td>{{pro.description}}</td>
+                <td>{{pro.prize}}</td>
+
+                <td><a href="{% url 'product_update' pro.id key %}"><i class="fa fa-pencil-square-o" style=" color: #3c8dbc; font-size: 20px;"></i></a></td>
+                <td><a href="{% url 'product_delete' pro.id key %}" onclick="return confirm('Do you really want to Delete ?');">
+                    <i class="fa fa-trash-o" aria-hidden="true" style="color: black;font-size: 20px;"></i>
+                </a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% endfor %}
+{% endblock %}
