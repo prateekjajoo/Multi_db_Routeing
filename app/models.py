@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 class UserRole(User):
     """ User model inherited by django.contrib.auth.models.User """
 
-    db_assign = models.CharField(max_length=50, default='None', null=True, blank=True)
+    db_assign = models.CharField(max_length=150, default='None', null=True, blank=True)
 
 
 class Product(models.Model):

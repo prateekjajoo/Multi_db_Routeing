@@ -24,6 +24,7 @@ def email(reciver, message):
     send_mail(subject, message, email_from, recipient_list )
     return HttpResponse("Successfully send mail")
 
+
 class UserCreateView(LoginRequiredMixin, CreateView):
     """ This is user create view for user's creation """
     model = UserRole

@@ -16,6 +16,5 @@ urlpatterns = [
     url(r'pro-list/', AllProductListView.as_view(), name="pro_list"),
     url(r'login', UserLoginView.as_view(), name="user_login"),
     url("logout", LogoutView.as_view(), name="logout"),
-    url("email", email, name="email"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
