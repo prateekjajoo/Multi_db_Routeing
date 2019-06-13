@@ -1,0 +1,9 @@
+# Django
+*.pyc
+
+
+*.sqlite3
+
+.idea
+
+/.project
