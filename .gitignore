@@ -1,6 +1,6 @@
 # Django
 *.pyc
-
+config.ini
 
 *.sqlite3
 
