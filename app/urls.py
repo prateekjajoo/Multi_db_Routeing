@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from .views import ProductCreateView, UserLoginView, UserCreateView, UserListView, ProductUpdateView, ProductDeleteView
-from .views import UserUpdateView, UserDeleteView, AllProductListView, LogoutView, email
+from .views import UserUpdateView, UserDeleteView, AllProductListView, LogoutView
 from django.conf import settings
 from django.conf.urls.static import static
 

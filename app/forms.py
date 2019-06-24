@@ -10,10 +10,11 @@ Database_choices = (
     ('database5', 'Database5'),
 )
 
+
 class UserRoleForm(ModelForm):
     """ User form overwite password field for password input and db_assign for list of database """
     password = forms.CharField(widget=forms.PasswordInput)
-    db_assign = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=Database_choices,)
+    db_assign = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=Database_choices,)
 
     class Meta:
         model = UserRole

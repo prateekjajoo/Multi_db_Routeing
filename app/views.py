@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView, UpdateView
-from django.views.generic.edit import CreateView, DeleteView, View
+from django.views.generic.edit import CreateView, DeleteView
 from .models import Product, UserRole
 from .forms import ProductForm, UserRoleForm
 from django.contrib.auth import authenticate, login, logout
@@ -8,7 +8,6 @@ import unicodedata
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponse
 from django.contrib import messages
-
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -20,8 +19,8 @@ def email(reciver, message):
     subject = 'Username & password'
     message = message
     email_from = settings.EMAIL_HOST_USER
-    recipient_list = [reciver,]
-    send_mail(subject, message, email_from, recipient_list )
+    recipient_list = [reciver, ]
+    send_mail(subject, message, email_from, recipient_list)
     return HttpResponse("Successfully send mail")
 
 
@@ -33,7 +32,7 @@ class UserCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         user = form.save(commit=False)
         if form.is_valid():
-            password = form.cleaned_data['password'] # for password encryption
+            password = form.cleaned_data['password']  # for password encryption
             username = form.cleaned_data['username']
             user.set_password(password)
             for i in range(1, 6):   # to store all user in all five database
@@ -41,14 +40,19 @@ class UserCreateView(LoginRequiredMixin, CreateView):
                 if db_name == "database1":
                     db_name = ''
                 user.save(using=db_name)
-            message = "Hello Please check your user name and password username= {} password = {}".format(username, password)
-            email(username, message)
+            message = "Hello Please check your user name and password username= " \
+                      "{} password = {}".format(username, password)
+            try:
+                email(username, message)
+            except:
+                messages.add_message(self.request, messages.WARNING, "Sorry, E-mail not send")
             messages.add_message(self.request, messages.SUCCESS, "Successfully Create User")  # Success message
             return redirect('user_create')
 
-class LogoutView(View):
+
+class LogoutView(TemplateView):
     """  Log out View for logout  """
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         logout(request)
         return redirect('user_login')
 
@@ -115,7 +119,8 @@ class UserLoginView(TemplateView):
     def get(self, request, *args, **kwargs):
 
         if request.user.is_authenticated:
-            if request.user.is_superuser:  # check is user is super so its go superuser dashbord else normal user deshbord
+            # check is user is super so its go superuser dashbord else normal user deshbord
+            if request.user.is_superuser:
                 return redirect('user_create')
             else:
                 return redirect('product_create')
@@ -230,4 +235,3 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         if self.request.user.is_superuser:
             return redirect('pro_list')
         return redirect('product_create')
-
