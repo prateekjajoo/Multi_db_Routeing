@@ -4,6 +4,6 @@ config.ini
 
 *.sqlite3
 
-.idea
+*.idea
 
 /.project
